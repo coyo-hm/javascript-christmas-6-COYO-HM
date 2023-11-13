@@ -8,6 +8,7 @@ class App {
     const menus = await InputView.getMenu();
     const totalOrderAmount = this.calcTotalOrderAmount(menus);
     const isExistedGift = totalOrderAmount >= GIFT_THRESHOLD_AMOUNT;
+    const christmasDiscounts = this.calcChristmasDiscounts(+date);
 
     OutputView.printNotice(date);
     OutputView.printMenu(menus);
@@ -21,6 +22,10 @@ class App {
 
       return total + price * count;
     }, 0);
+  }
+
+  calcChristmasDiscounts(date) {
+    return date < 26 ? 900 + date * 100 : 0;
   }
 }
 
