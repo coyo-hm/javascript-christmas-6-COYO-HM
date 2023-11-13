@@ -40,7 +40,10 @@ const OutputView = {
     Console.print(`${price.toLocaleString("ko-KR")}원\n`);
   },
 
-  printActualPaymentAmount(actualPaymentAmount) {}
+  printActualPaymentAmount(actualPaymentAmount) {
+    Console.print("<할인 후 예상 결제 금액>");
+    Console.print(`${actualPaymentAmount.toLocaleString("ko-KR")}원\n`);
+  },
 };
 
 export default OutputView;

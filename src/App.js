@@ -18,12 +18,14 @@ class App {
       this.getMenuInfoList(menus),
     );
     const discountAmount = this.calcDiscountAmount(discountInfo);
+    const actualPaymentAmount = totalOrderAmount - discountAmount;
 
     OutputView.printNotice(date);
     OutputView.printMenu(menus);
     OutputView.printTotalOrderAmount(totalOrderAmount);
     OutputView.printGift(isExistedGift);
     OutputView.printBenefit(isExistedGift, discountInfo, discountAmount);
+    OutputView.printActualPaymentAmount(actualPaymentAmount);
   }
 
   parseMenu(menuStr = "") {
