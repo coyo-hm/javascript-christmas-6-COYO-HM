@@ -2,9 +2,7 @@ import { MAX_ORDERED_COUNT, MENU } from "./constant.js";
 
 const Validate = {
   validateDate(input) {
-    if (!/^\d+$/g.test(input)) {
-      throw new Error("[ERROR] 방문 날짜는 숫자로 입력하셔야 합니다.");
-    } else if (+input < 1 || +input > 31) {
+    if (!/^\d+$/g.test(input) || +input < 1 || +input > 31) {
       throw new Error("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
     }
   },
