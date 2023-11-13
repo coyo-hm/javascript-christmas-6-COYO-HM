@@ -14,3 +14,5 @@ export const MENU = [
 ];
 
 export const MAX_ORDERED_COUNT = 20;
+
+export const GIFT_THRESHOLD_AMOUNT = 120000;
