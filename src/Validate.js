@@ -29,6 +29,7 @@ const Validate = {
     let menuCount = 0;
     const orderedMenu = [];
     for (const [menu, count] of menus) {
+      console.log(menu, count, this.isValidCount(count) || this.isValidMenu(menu, orderedMenu))
       if (this.isValidCount(count) || this.isValidMenu(menu, orderedMenu)) {
         throw new Error(
           "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",

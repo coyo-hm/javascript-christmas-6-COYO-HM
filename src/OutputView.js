@@ -1,3 +1,4 @@
+import { Console } from "@woowacourse/mission-utils";
 const OutputView = {
   printNotice(date) {
     Console.print(

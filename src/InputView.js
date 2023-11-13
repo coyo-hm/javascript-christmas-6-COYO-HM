@@ -1,3 +1,4 @@
+import { Console } from "@woowacourse/mission-utils";
 import Validate from "./Validate.js";
 import { parseMenu } from "./util.js";
 
@@ -25,7 +26,7 @@ const InputView = {
       return menus;
     } catch (e) {
       Console.print(e?.message);
-      return this.getDate();
+      return this.getMenu();
     }
   },
 };

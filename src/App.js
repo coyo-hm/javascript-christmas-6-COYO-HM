@@ -3,8 +3,8 @@ import OutputView from "./OutputView.js";
 
 class App {
   async run() {
-    const date = InputView.getDate();
-    const menus = InputView.getMenu();
+    const date = await InputView.getDate();
+    const menus = await InputView.getMenu();
 
     OutputView.printNotice(date);
     OutputView.printMenu(menus);

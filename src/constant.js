@@ -6,7 +6,7 @@ export const MENU = [
   { name: "바비큐립", price: 54000, type: "메인" },
   { name: "해산물파스타", price: 35000, type: "메인" },
   { name: "크리스마스파스타", price: 25000, type: "메인" },
-  { name: "디저트", price: 15000, type: "디저트" },
+  { name: "초코케이크", price: 15000, type: "디저트" },
   { name: "아이스크림", price: 5000, type: "디저트" },
   { name: "제로콜라", price: 3000, type: "음료" },
   { name: "레드와인", price: 60000, type: "음료" },
