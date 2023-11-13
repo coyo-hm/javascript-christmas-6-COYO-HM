@@ -37,8 +37,10 @@ const OutputView = {
 
     Console.print("<총혜택 내역>");
     const price = isExistedGift ? 25000 + discountAmount : discountAmount;
-    Console.print(`${discountAmount.toLocaleString("ko-KR")}원\n`);
+    Console.print(`${price.toLocaleString("ko-KR")}원\n`);
   },
+
+  printActualPaymentAmount(actualPaymentAmount) {}
 };
 
 export default OutputView;
