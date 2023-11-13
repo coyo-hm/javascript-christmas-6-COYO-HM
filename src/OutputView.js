@@ -37,7 +37,7 @@ const OutputView = {
     }
 
     Console.print(" ");
-    Console.print("<총혜택 내역>");
+    Console.print("<총혜택 금액>");
     Console.print(`${totalBenefitAmount.toLocaleString("ko-KR")}원\n`);
   },
 
