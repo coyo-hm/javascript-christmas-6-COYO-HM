@@ -17,6 +17,7 @@ class App {
       +date,
       this.getMenuInfoList(menus),
     );
+    const discountAmount = this.calcDiscountAmount(discountInfo);
 
     OutputView.printNotice(date);
     OutputView.printMenu(menus);
@@ -45,6 +46,10 @@ class App {
 
       return total + price * count;
     }, 0);
+  }
+
+  calcDiscountAmount(discountInfo) {
+    return discountInfo.reduce((total, { discount }) => total + discount, 0);
   }
 
   calcChristmasDiscounts(date) {
