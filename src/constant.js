@@ -18,3 +18,5 @@ export const MAX_ORDERED_COUNT = 20;
 export const GIFT_THRESHOLD_AMOUNT = 120000;
 export const DAY_DISCOUNT_AMOUNT = 2023;
 export const STAR_DAY_DISCOUNT_AMOUNT = 1000;
+
+export const EVENT_TARGET_THRESHOLD = 10000;

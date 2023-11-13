@@ -2,6 +2,7 @@ import InputView from "./InputView.js";
 import OutputView from "./OutputView.js";
 import {
   DAY_DISCOUNT_AMOUNT,
+  EVENT_TARGET_THRESHOLD,
   GIFT_THRESHOLD_AMOUNT,
   MENU,
   STAR_DAY_DISCOUNT_AMOUNT,
@@ -12,6 +13,22 @@ class App {
     const date = await InputView.getDate();
     const menus = await InputView.getMenu();
     const totalOrderAmount = this.calcTotalOrderAmount(menus);
+
+    OutputView.printNotice(date);
+    OutputView.printMenu(menus);
+    OutputView.printTotalOrderAmount(totalOrderAmount);
+
+    if (EVENT_TARGET_THRESHOLD <= totalOrderAmount) {
+      this.runEvent(date, menus, totalOrderAmount);
+    } else {
+      OutputView.printGift(false);
+      OutputView.printBenefit(false, [], 0);
+      OutputView.printActualPaymentAmount(totalOrderAmount);
+      OutputView.printBadge("없음");
+    }
+  }
+
+  runEvent(date, menus, totalOrderAmount) {
     const isExistedGift = totalOrderAmount >= GIFT_THRESHOLD_AMOUNT;
     const discountInfo = this.getDiscountInfo(
       +date,
@@ -24,9 +41,6 @@ class App {
     const actualPaymentAmount = totalOrderAmount - discountAmount;
     const badge = this.getEventBadge(totalBenefitAmount);
 
-    OutputView.printNotice(date);
-    OutputView.printMenu(menus);
-    OutputView.printTotalOrderAmount(totalOrderAmount);
     OutputView.printGift(isExistedGift);
     OutputView.printBenefit(isExistedGift, discountInfo, totalBenefitAmount);
     OutputView.printActualPaymentAmount(actualPaymentAmount);
