@@ -22,7 +22,7 @@ const InputView = {
       );
       const menus = parseMenu(input);
       Validate.validateMenu(menus);
-      return input;
+      return menus;
     } catch (e) {
       Console.print(e?.message);
       return this.getDate();
