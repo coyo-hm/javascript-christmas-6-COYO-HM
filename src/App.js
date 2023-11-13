@@ -8,13 +8,18 @@ class App {
     const menus = await InputView.getMenu();
     const totalOrderAmount = this.calcTotalOrderAmount(menus);
     const isExistedGift = totalOrderAmount >= GIFT_THRESHOLD_AMOUNT;
-    const christmasDiscounts = this.calcChristmasDiscounts(+date);
+    const discountInfo = [{label:"크리스마스 디데이 할인", discount: this.calcChristmasDiscounts(+date)}]
 
     OutputView.printNotice(date);
     OutputView.printMenu(menus);
     OutputView.printTotalOrderAmount(totalOrderAmount);
     OutputView.printGift(isExistedGift);
   }
+
+  parseMenu = (menuStr = "") => {
+    const menus = menuStr.split(",");
+    return menus.map((row) => row.split("-"));
+  };
 
   calcTotalOrderAmount(menus) {
     return menus.reduce((total, [menu, count]) => {
