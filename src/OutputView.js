@@ -23,26 +23,32 @@ const OutputView = {
     Console.print(`${isExistedGift ? "샴페인 1개" : "없음"}\n`);
   },
 
-  printBenefit(isExistedGift, discountInfo, discountAmount) {
+  printBenefit(isExistedGift, discountInfo, totalBenefitAmount) {
     Console.print("<혜택 내역>");
-    discountInfo.forEach(({ label, discount }) =>
-      Console.print(`${label}: -${discount.toLocaleString("ko-KR")}원`),
-    );
-    if (isExistedGift) {
-      Console.print(`증정 이벤트: -25,000원`);
-    } else if (discountAmount === 0) {
+    if (totalBenefitAmount === 0) {
       Console.print(`없음`);
+    } else {
+      discountInfo.forEach(({ label, discount }) =>
+        Console.print(`${label}: -${discount.toLocaleString("ko-KR")}원`),
+      );
+      if (isExistedGift) {
+        Console.print(`증정 이벤트: -25,000원`);
+      }
     }
-    Console.print(" ");
 
+    Console.print(" ");
     Console.print("<총혜택 내역>");
-    const price = isExistedGift ? 25000 + discountAmount : discountAmount;
-    Console.print(`${price.toLocaleString("ko-KR")}원\n`);
+    Console.print(`${totalBenefitAmount.toLocaleString("ko-KR")}원\n`);
   },
 
   printActualPaymentAmount(actualPaymentAmount) {
     Console.print("<할인 후 예상 결제 금액>");
     Console.print(`${actualPaymentAmount.toLocaleString("ko-KR")}원\n`);
+  },
+
+  printBadge(badge) {
+    Console.print("<12월 이벤트 배지>");
+    Console.print(badge);
   },
 };
 
