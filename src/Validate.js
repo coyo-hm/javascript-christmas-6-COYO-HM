@@ -28,8 +28,7 @@ const Validate = {
   validateMenu(menus) {
     let menuCount = 0;
     const orderedMenu = [];
-    for (const m of menus) {
-      const [menu, count] = m.split("-");
+    for (const [menu, count] of menus) {
       if (this.isValidCount(count) || this.isValidMenu(menu, orderedMenu)) {
         throw new Error(
           "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
@@ -43,7 +42,7 @@ const Validate = {
         );
       }
     }
-    if (this.isOrderedFood(isOrderedFood)) {
+    if (this.isOrderedFood(orderedMenu)) {
       throw new Error("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.");
     }
   },
