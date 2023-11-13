@@ -23,6 +23,7 @@ class App {
     OutputView.printMenu(menus);
     OutputView.printTotalOrderAmount(totalOrderAmount);
     OutputView.printGift(isExistedGift);
+    OutputView.printBenefit(isExistedGift, discountInfo, discountAmount);
   }
 
   parseMenu(menuStr = "") {

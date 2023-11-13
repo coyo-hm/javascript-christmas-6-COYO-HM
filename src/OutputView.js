@@ -22,6 +22,23 @@ const OutputView = {
     Console.print("<증정 메뉴>");
     Console.print(`${isExistedGift ? "샴페인 1개" : "없음"}\n`);
   },
+
+  printBenefit(isExistedGift, discountInfo, discountAmount) {
+    Console.print("<혜택 내역>");
+    discountInfo.forEach(({ label, discount }) =>
+      Console.print(`${label}: -${discount.toLocaleString("ko-KR")}원`),
+    );
+    if (isExistedGift) {
+      Console.print(`증정 이벤트: -25,000원`);
+    } else if (discountAmount === 0) {
+      Console.print(`없음`);
+    }
+    Console.print(" ");
+
+    Console.print("<총혜택 내역>");
+    const price = isExistedGift ? 25000 + discountAmount : discountAmount;
+    Console.print(`${discountAmount.toLocaleString("ko-KR")}원\n`);
+  },
 };
 
 export default OutputView;
