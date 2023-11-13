@@ -81,14 +81,16 @@ class App {
   calcWeekendDiscount(menus) {
     return menus.reduce(
       (total, menu) =>
-        menu.type === "메인" ? total + DAY_DISCOUNT_AMOUNT : total,
+        menu.type === "메인" ? total + DAY_DISCOUNT_AMOUNT * menu.count : total,
       0,
     );
   }
   calcWeekdaysDiscount(menus) {
     return menus.reduce(
       (total, menu) =>
-        menu.type === "디저트" ? total + DAY_DISCOUNT_AMOUNT : total,
+        menu.type === "디저트"
+          ? total + DAY_DISCOUNT_AMOUNT * menu.count
+          : total,
       0,
     );
   }
