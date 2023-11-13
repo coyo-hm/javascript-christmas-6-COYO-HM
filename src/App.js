@@ -4,6 +4,7 @@ import {
   DAY_DISCOUNT_AMOUNT,
   GIFT_THRESHOLD_AMOUNT,
   MENU,
+  STAR_DAY_DISCOUNT_AMOUNT,
 } from "./constant.js";
 
 class App {
@@ -33,6 +34,11 @@ class App {
     return day === 5 || day === 6;
   }
 
+  isStarDate(date) {
+    const day = new Date(2023, 11, date).getDay();
+    return day === 0 || date === 25;
+  }
+
   calcTotalOrderAmount(menus) {
     return menus.reduce((total, [menu, count]) => {
       const price = MENU.find(({ name }) => menu === name)?.price || 0;
@@ -43,6 +49,21 @@ class App {
 
   calcChristmasDiscounts(date) {
     return date < 26 ? 900 + date * 100 : 0;
+  }
+
+  calcWeekendDiscount(menus) {
+    return menus.reduce(
+      (total, menu) =>
+        menu.type === "메인" ? total + DAY_DISCOUNT_AMOUNT : total,
+      0,
+    );
+  }
+  calcWeekdaysDiscount(menus) {
+    return menus.reduce(
+      (total, menu) =>
+        menu.type === "디저트" ? total + DAY_DISCOUNT_AMOUNT : total,
+      0,
+    );
   }
 
   getMenuInfoList(menus) {
@@ -61,27 +82,21 @@ class App {
         discount: christmasDiscounts,
       });
     }
-
-    if (this.isWeekend(date)) {
-      const discount = menus.reduce(
-        (total, menu) =>
-          menu.type === "메인" ? total + DAY_DISCOUNT_AMOUNT : total,
-        0,
-      );
-      if (discount > 0) {
-        discountInfo.push({ label: "주말 할인", discount: discount });
-      }
-    } else {
-      const discount = menus.reduce(
-        (total, menu) =>
-          menu.type === "디저트" ? total + DAY_DISCOUNT_AMOUNT : total,
-        0,
-      );
-      if (discount > 0) {
-        discountInfo.push({ label: "평일 할인", discount: discount });
-      }
+    const dayDiscount = this.isWeekend(date)
+      ? this.calcWeekendDiscount(menus)
+      : this.calcWeekdaysDiscount(menus);
+    if (dayDiscount > 0) {
+      discountInfo.push({
+        label: this.isWeekend(date) ? "주말 할인" : "평일 할인",
+        discount: dayDiscount,
+      });
     }
-
+    if (this.isStarDate(date)) {
+      discountInfo.push({
+        label: "특별 할인",
+        discount: STAR_DAY_DISCOUNT_AMOUNT,
+      });
+    }
     return discountInfo;
   }
 }
